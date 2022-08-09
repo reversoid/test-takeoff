@@ -1,16 +1,17 @@
 import { nanoid } from "nanoid";
 import { Navigate, Route } from "react-router-dom";
-import App from "../App";
-import Dashboard from "../features/dashboard/Dashboard";
+import { AuthFeature } from "../features/auth/AuthFeature";
+import DashboardFeature from "../features/dashboard/DashboardFeature";
+import { IRoute } from "./types";
 
-const _routes = [
+const _routes: IRoute[] = [
   {
-    path: "auth",
-    element: <App />,
+    path: "auth/*",
+    element: <AuthFeature/>,
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: <DashboardFeature />,
   },
   {
     path: "*",
