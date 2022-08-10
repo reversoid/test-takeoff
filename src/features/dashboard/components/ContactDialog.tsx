@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button } from "@mui/material";
-import { DialogTypes, IContactDTO } from "../utils/types";
+import { IContactDTO } from "../utils/types";
 
 export default function ContactDialog({
   open,

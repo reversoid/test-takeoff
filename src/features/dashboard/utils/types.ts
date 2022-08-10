@@ -9,7 +9,3 @@ export interface IContactDTO {
   email: string;
   phone: string;
 }
-export const enum DialogTypes {
-  ADD_USER,
-  EDIT_USER,
-}
