@@ -1,0 +1,16 @@
+{
+    "contacts": [
+        {
+            "id": 1,
+            "name": "George Franklin",
+            "email": "hehe1@mail.com",
+            "phone": "89999999"
+        },
+        {
+            "id": 2,
+            "name": "Michael Jordan",
+            "email": "hehe2@mail.com",
+            "phone": "89999999"
+        }
+    ]
+}
