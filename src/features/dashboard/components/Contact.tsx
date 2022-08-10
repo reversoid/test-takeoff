@@ -7,7 +7,15 @@ import {
 } from "@mui/material";
 import { IContact } from "../utils/types";
 
-export default function Contact({ contact }: { contact: IContact }) {
+export default function Contact({
+  contact,
+  handleEdit,
+  handleRemove,
+}: {
+  contact: IContact;
+  handleEdit: (contact: IContact) => void;
+  handleRemove: (id: number) => void;
+}) {
   return (
     <Card sx={{ minWidth: 275 }} variant="outlined">
       <CardContent>
@@ -24,10 +32,10 @@ export default function Contact({ contact }: { contact: IContact }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="medium" color="primary">
+        <Button size="medium" color="primary" onClick={() => handleEdit(contact)}>
           Edit
         </Button>
-        <Button size="medium" color="error">
+        <Button size="medium" color="error" onClick={() => handleRemove(contact.id)}>
           Remove
         </Button>
       </CardActions>
