@@ -2,13 +2,11 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { nanoid } from "nanoid";
 import React, { useEffect, useState } from "react";
 import Contact from "./components/Contact";
-import { HttpService } from "./utils/HttpService";
+import { ContactsService } from "./utils/ContactsService";
 import { IContact } from "./utils/types";
-import Icon from '@mui/material/Icon';
-import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
-const service = new HttpService();
+const service = new ContactsService();
 
 export default function Dashboard() {
   const [contacts, setContacts] = useState<IContact[]>([]);

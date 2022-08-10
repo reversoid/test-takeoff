@@ -12,5 +12,17 @@
             "email": "hehe2@mail.com",
             "phone": "89999999"
         }
+    ],
+    "users": [
+        {
+            "name": "George",
+            "login": "abc555_xxx",
+            "password": "123"
+        },
+        {
+            "name": "Michael",
+            "login": "abc666_xxx",
+            "password": "321"
+        }
     ]
 }
