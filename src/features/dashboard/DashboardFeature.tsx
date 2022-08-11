@@ -15,11 +15,9 @@ import { IContact, IContactDTO } from "./utils/types";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ContactDialog from "./components/ContactDialog";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { addContact, getContacts, selectContacts } from "./utils/contactsSlice";
+import { addContact, getContacts, removeContact, selectContacts } from "./utils/contactsSlice";
 
 export default function Dashboard() {
-  // const [contacts, setContacts] = useState<IContact[]>([]);
-
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -41,16 +39,23 @@ export default function Dashboard() {
   };
 
   const handleRemoveContact = (id: number) => {
-    console.log("hey", id);
+    dispatch(removeContact(id));
   };
 
   const dispatch = useAppDispatch();
 
   const {value: contacts, status} = useAppSelector(selectContacts);
 
+  useEffect(() => {
+    console.log(contacts);
+    
+  }, [contacts])
+  
+  const isLoading = status === 'loading';
+
   return (
     <>
-      <LinearProgress color="info" sx={status === 'loading' ? {} : {visibility: "hidden"}}/>
+      <LinearProgress color="info" sx={{visibility: isLoading ? 'visible' : 'hidden', position: 'fixed', top: '0', left: '0', width: '100%'}}/>
       <Container maxWidth="lg">
         <Typography
           variant="h1"

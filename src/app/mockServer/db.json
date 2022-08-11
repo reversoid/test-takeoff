@@ -1,52 +1,28 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "George Franklin",
-      "email": "hehe1@mail.com",
-      "phone": "89999999"
+      "name": "",
+      "email": "",
+      "phone": "",
+      "id": 15
     },
     {
-      "id": 2,
-      "name": "Michael Jordan",
-      "email": "hehe2@mail.com",
-      "phone": "89999999"
+      "name": "",
+      "email": "",
+      "phone": "",
+      "id": 17
     },
     {
-      "email": "hello@mail.ru",
-      "name": "name",
-      "phone": "123",
-      "id": 3
+      "name": "",
+      "email": "",
+      "phone": "",
+      "id": 18
     },
     {
-      "email": "hello@mail.ru",
-      "name": "name",
-      "phone": "123",
-      "id": 4
-    },
-    {
-      "email": "hello@mail.ru",
-      "name": "name",
-      "phone": "123",
-      "id": 5
-    },
-    {
-      "email": "hello@mail.ru",
-      "name": "name",
-      "phone": "123",
-      "id": 6
-    },
-    {
-      "email": "hello@mail.ru",
-      "name": "name",
-      "phone": "123",
-      "id": 7
-    },
-    {
-      "name": "test",
-      "email": "test",
-      "phone": "test",
-      "id": 8
+      "name": "",
+      "email": "",
+      "phone": "",
+      "id": 19
     }
   ],
   "users": [
