@@ -6,6 +6,8 @@ import { ContactsService } from "./utils/ContactsService";
 import { IContact, IContactDTO } from "./utils/types";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ContactDialog from "./components/ContactDialog";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { addContact, selectContacts } from "./utils/contactsSlice";
 
 const service = new ContactsService();
 
@@ -19,7 +21,7 @@ export default function Dashboard() {
   };
 
   const handleSubmit = (data: IContactDTO) => {
-    console.log(data);
+    dispatch(addContact(data));
     setOpen(false);
   };
 
@@ -36,6 +38,10 @@ export default function Dashboard() {
   const handleRemoveContact = (id: number) => {
     console.log("hey", id);
   };
+
+  const dispatch = useAppDispatch();
+
+  const contactsSelector = useAppSelector(selectContacts);
 
   return (
     <Container maxWidth="lg">
