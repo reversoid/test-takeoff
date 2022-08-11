@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { IContact, IContactDTO } from "./types";
 
 export class ContactsService {
@@ -6,15 +6,15 @@ export class ContactsService {
         return axios.get<IContact[]>('http://localhost:4444/api/contacts');
     }
 
-    public updateContact(data: {id: number, newData: IContactDTO}) {
-        return axios.put<IContact>('http://localhost:4444/api/contacts', data);
-    }
+  public updateContact(data: { id: number; newData: IContactDTO }) {
+    return axios.put<IContact>("http://localhost:4444/api/contacts", data);
+  }
 
-    public removeContact(id: number) {
-        return axios.delete(`http://localhost:4444/api/contacts/${id}`);
-    }
+  public removeContact(id: number) {
+    return axios.delete(`http://localhost:4444/api/contacts/${id}`);
+  }
 
-    public addContact(data: IContactDTO) {
-        return axios.post(`http://localhost:4444/api/contacts/`, data);
-    }
+  public addContact(data: IContactDTO) {
+    return axios.post(`http://localhost:4444/api/contacts/`, data);
+  }
 }
