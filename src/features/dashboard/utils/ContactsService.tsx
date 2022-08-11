@@ -7,7 +7,7 @@ export class ContactsService {
     }
 
     public updateContact(data: {id: number, newData: IContactDTO}) {
-        return axios.put<IContact[]>('http://localhost:4444/api/contacts', data);
+        return axios.put<IContact>('http://localhost:4444/api/contacts', data);
     }
 
     public removeContact(id: number) {

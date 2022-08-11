@@ -23,6 +23,30 @@ export const addContact = createAsyncThunk(
   }
 );
 
+export const removeContact = createAsyncThunk(
+  "contacts/fetchContacts",
+  async (id: number) => {
+    const response = await _contactsService.removeContact(id);
+    return response.data;
+  }
+);
+
+export const updateContact = createAsyncThunk(
+  "contacts/fetchContacts",
+  async ({id, newData}: {id: number; newData: IContactDTO}) => {
+    const response = await _contactsService.updateContact({id, newData});
+    return response.data;
+  }
+);
+
+export const getContacts = createAsyncThunk(
+  "contacts/fetchContacts",
+  async () => {
+    const response = await _contactsService.getContacts();
+    return response.data;
+  }
+);
+
 export const contactsSlice = createSlice({
   name: "contacts",
   initialState,
@@ -38,7 +62,45 @@ export const contactsSlice = createSlice({
       })
       .addCase(addContact.rejected, (state) => {
         state.status = "failed";
-      });
+      })
+
+      .addCase(removeContact.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(removeContact.fulfilled, (state, action: PayloadAction<number>) => {
+        state.status = "idle";
+        state.value.filter((contact) => contact.id !== action.payload);
+      })
+      .addCase(removeContact.rejected, (state) => {
+        state.status = "failed";
+      })
+
+      .addCase(getContacts.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getContacts.fulfilled, (state, action: PayloadAction<IContact[]>) => {
+        state.status = "idle";
+        state.value = action.payload;
+      })
+      .addCase(getContacts.rejected, (state) => {
+        state.status = "failed";
+      })
+
+      .addCase(updateContact.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateContact.fulfilled, (state, action: PayloadAction<IContact>) => {
+        state.status = "idle";
+        let index = state.value.findIndex((contact) => contact.id === action.payload.id);
+        if (index === -1) return;
+        state.value[index] = action.payload;
+      })
+      .addCase(getContacts.rejected, (state) => {
+        state.status = "failed";
+      })
+
+
+
   },
 });
 
