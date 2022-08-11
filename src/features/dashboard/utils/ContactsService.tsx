@@ -1,10 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { IContact, IContactDTO } from "./types";
 
 export class ContactsService {
-    public getContacts() {
-        return axios.get<IContact[]>('http://localhost:4444/api/contacts');
-    }
+  public getContacts() {
+    return axios.get<IContact[]>("http://localhost:4444/api/contacts");
+  }
 
   public updateContact(data: { id: number; newData: IContactDTO }) {
     return axios.put<IContact>("http://localhost:4444/api/contacts", data);

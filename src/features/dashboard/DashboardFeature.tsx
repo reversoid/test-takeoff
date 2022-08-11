@@ -18,6 +18,13 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addContact, getContacts, removeContact, selectContacts } from "./utils/contactsSlice";
 
 export default function Dashboard() {
+  const dispatch = useAppDispatch();
+  const {value: contacts, status} = useAppSelector(selectContacts);
+  
+  useEffect(() => {
+    dispatch(getContacts())
+  }, []);
+
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -29,10 +36,6 @@ export default function Dashboard() {
     setOpen(false);
   };
 
-  useEffect(() => {
-    dispatch(getContacts())
-  }, []);
-
 
   const handleEditContact = (contact: IContact) => {
     console.log("hello", contact);
@@ -41,10 +44,6 @@ export default function Dashboard() {
   const handleRemoveContact = (id: number) => {
     dispatch(removeContact(id));
   };
-
-  const dispatch = useAppDispatch();
-
-  const {value: contacts, status} = useAppSelector(selectContacts);
 
   useEffect(() => {
     console.log(contacts);

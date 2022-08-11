@@ -26,8 +26,8 @@ export const addContact = createAsyncThunk(
 export const removeContact = createAsyncThunk(
   "contacts/remove",
   async (id: number) => {
-    const response = await _contactsService.removeContact(id);
-    return response.data;
+    await _contactsService.removeContact(id);
+    return id;
   }
 );
 
