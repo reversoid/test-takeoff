@@ -1,5 +1,18 @@
 {
-  "contacts": [],
+  "contacts": [
+    {
+      "name": "test",
+      "email": "test",
+      "phone": "tet",
+      "id": 1
+    },
+    {
+      "name": "test",
+      "email": "test",
+      "phone": "tet",
+      "id": 2
+    }
+  ],
   "users": [
     {
       "name": "George",

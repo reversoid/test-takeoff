@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IContact, IContactDTO } from "./types";
-import { ContactsService } from "./ContactsService";
+import { ContactsService } from "./ContactsHTTPService";
 import { RootState } from "../../../app/store";
 
 export interface ContactsState {

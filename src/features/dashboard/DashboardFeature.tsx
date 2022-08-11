@@ -10,7 +10,6 @@ import {
 import { nanoid } from "nanoid";
 import React, { useEffect, useState } from "react";
 import Contact from "./components/Contact";
-import { ContactsService } from "./utils/ContactsService";
 import { IContact, IContactDTO } from "./utils/types";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ContactDialog from "./components/ContactDialog";
@@ -44,11 +43,6 @@ export default function Dashboard() {
   const handleRemoveContact = (id: number) => {
     dispatch(removeContact(id));
   };
-
-  useEffect(() => {
-    console.log(contacts);
-    
-  }, [contacts])
   
   const isLoading = status === 'loading';
 
