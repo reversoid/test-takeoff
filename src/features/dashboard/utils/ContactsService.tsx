@@ -13,4 +13,8 @@ export class ContactsService {
     public removeContact(id: number) {
         return axios.delete(`http://localhost:4444/api/contacts/${id}`);
     }
+
+    public addContact(data: IContactDTO) {
+        return axios.post(`http://localhost:4444/api/contacts/`, data);
+    }
 }
