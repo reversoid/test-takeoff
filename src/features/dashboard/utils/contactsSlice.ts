@@ -16,7 +16,7 @@ const initialState: ContactsState = {
 const _contactsService = new ContactsService();
 
 export const addContact = createAsyncThunk(
-  "contacts/fetchContacts",
+  "contacts/add",
   async (data: IContactDTO) => {
     const response = await _contactsService.addContact(data);
     return response.data;
@@ -24,7 +24,7 @@ export const addContact = createAsyncThunk(
 );
 
 export const removeContact = createAsyncThunk(
-  "contacts/fetchContacts",
+  "contacts/remove",
   async (id: number) => {
     const response = await _contactsService.removeContact(id);
     return response.data;
@@ -32,7 +32,7 @@ export const removeContact = createAsyncThunk(
 );
 
 export const updateContact = createAsyncThunk(
-  "contacts/fetchContacts",
+  "contacts/update",
   async ({id, newData}: {id: number; newData: IContactDTO}) => {
     const response = await _contactsService.updateContact({id, newData});
     return response.data;
@@ -40,7 +40,7 @@ export const updateContact = createAsyncThunk(
 );
 
 export const getContacts = createAsyncThunk(
-  "contacts/fetchContacts",
+  "contacts/get",
   async () => {
     const response = await _contactsService.getContacts();
     return response.data;
@@ -95,12 +95,9 @@ export const contactsSlice = createSlice({
         if (index === -1) return;
         state.value[index] = action.payload;
       })
-      .addCase(getContacts.rejected, (state) => {
+      .addCase(updateContact.rejected, (state) => {
         state.status = "failed";
       })
-
-
-
   },
 });
 
