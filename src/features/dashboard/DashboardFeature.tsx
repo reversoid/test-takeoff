@@ -49,15 +49,16 @@ export default function Dashboard() {
           variant="h1"
           component="h1"
           fontSize={"2.5rem"}
-          fontWeight={"500"}
+          fontWeight={"600"}
           textAlign={"center"}
+          sx={{my: '1rem'}}
         >
           Contacts
         </Typography>
-        <Button onClick={() => dispatch(open(undefined))} variant="contained">
+        <Button sx={{mb: '0.5rem'}} onClick={() => dispatch(open(undefined))} variant="contained">
           <AddBoxIcon fontSize="large" />
         </Button>
-        <Box>
+        <Box sx={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
           {contacts.map((contact) => (
             <Contact contact={contact} key={nanoid()} />
           ))}

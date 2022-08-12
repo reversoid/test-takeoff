@@ -51,7 +51,7 @@ export default function LoginPage() {
           fontSize={"2.5rem"}
           fontWeight={"600"}
           textAlign={"center"}
-          sx={{mt: '0.5rem', mb: '1rem'}}
+          sx={{my: '1rem'}}
         >
           Login
         </Typography>

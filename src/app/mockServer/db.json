@@ -1,46 +1,22 @@
 {
   "contacts": [
     {
-      "name": "2",
-      "email": "2",
-      "phone": "2",
-      "id": 8
+      "name": "",
+      "email": "",
+      "phone": "",
+      "id": 1
     },
     {
-      "name": "2",
-      "email": "2",
-      "phone": "2",
-      "id": 9
+      "name": "",
+      "email": "",
+      "phone": "",
+      "id": 2
     },
     {
       "name": "1",
       "email": "2",
-      "phone": "3",
-      "id": 10
-    },
-    {
-      "name": "5",
-      "email": "5",
       "phone": "5",
-      "id": 13
-    },
-    {
-      "name": "4",
-      "email": "5",
-      "phone": "5",
-      "id": 14
-    },
-    {
-      "name": "",
-      "email": "",
-      "phone": "",
-      "id": 15
-    },
-    {
-      "name": "",
-      "email": "",
-      "phone": "",
-      "id": 16
+      "id": 3
     }
   ],
   "users": [
