@@ -2,34 +2,68 @@ import {
   Button,
   Container,
   FormLabel,
-  Link as MLink,
+  LinearProgress,
   TextField,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useCallback, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { login, selectAuth } from "../utils/authSlice";
+import { LoginUserDto } from "../utils/types";
 
 export default function LoginPage() {
-  return (
-    <Container maxWidth="sm">
-      <Typography
-        variant="h1"
-        component="h1"
-        fontSize={"2.5rem"}
-        fontWeight={"500"}
-        textAlign={"center"}
-      >
-        Login
-      </Typography>
-      <form>
-        <TextField fullWidth label="Email" variant="filled" />
-        <TextField fullWidth label="Password" variant="filled" />
+  const dispatch = useAppDispatch();
+  const { status, token } = useAppSelector(selectAuth);
 
-        <Button variant="contained">Login</Button>
-      </form>
-      <FormLabel>
-        Do not have an account yet?{" "}
-        <Link to={"/auth/registration"}>Sign up</Link>
-      </FormLabel>
-    </Container>
+  const [form, setForm] = useState<LoginUserDto>({
+    login: "",
+    password: "",
+  });
+
+  const isFormValid = Object.values(form).every((value) =>
+    value.replace(/ /g, "")
+  );
+
+  const handleLogin = useCallback((form: LoginUserDto) => {
+    dispatch(login(form));
+  }, []);
+
+  const isLoading = status === "loading";
+  return (
+    <>
+      {token && <Navigate to={"/dashboard"} />}
+      <LinearProgress
+        color="info"
+        sx={{
+          visibility: isLoading ? "visible" : "hidden",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          width: "100%",
+        }}
+      />
+      <Container maxWidth="sm">
+        <Typography
+          variant="h1"
+          component="h1"
+          fontSize={"2.5rem"}
+          fontWeight={"500"}
+          textAlign={"center"}
+        >
+          Login
+        </Typography>
+        <form>
+          <TextField value={form.login} onChange={(e) => setForm({...form, login: e.target.value})} fullWidth label="Login" variant="filled" />
+          <TextField value={form.password} onChange={(e) => setForm({...form, password: e.target.value})} type="password" fullWidth label="Password" variant="filled" />
+
+          <Button onClick={() => handleLogin(form)} disabled={!isFormValid} variant="contained">Login</Button>
+        </form>
+        <FormLabel>
+          Do not have an account yet?{" "}
+          <Link to={"/auth/registration"}>Sign up</Link>
+        </FormLabel>
+      </Container>
+    </>
   );
 }
