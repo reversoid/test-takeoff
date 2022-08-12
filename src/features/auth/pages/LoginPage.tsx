@@ -28,9 +28,7 @@ export default function LoginPage() {
       </form>
       <FormLabel>
         Do not have an account yet?{" "}
-        <Link to={"/auth/registration"}>
-          <MLink>Sign up</MLink>
-        </Link>
+        <Link to={"/auth/registration"}>Sign up</Link>
       </FormLabel>
     </Container>
   );
