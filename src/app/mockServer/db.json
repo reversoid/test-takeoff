@@ -4,18 +4,6 @@
       "name": "2",
       "email": "2",
       "phone": "2",
-      "id": 5
-    },
-    {
-      "name": "2",
-      "email": "2",
-      "phone": "2",
-      "id": 6
-    },
-    {
-      "name": "2",
-      "email": "2",
-      "phone": "2",
       "id": 7
     },
     {
@@ -37,27 +25,15 @@
       "id": 10
     },
     {
-      "name": "6",
-      "email": "6",
-      "phone": "6",
-      "id": 11
-    },
-    {
-      "name": "1",
-      "email": "2",
-      "phone": "3",
-      "id": 12
-    },
-    {
       "name": "5",
       "email": "5",
       "phone": "5",
       "id": 13
     },
     {
-      "name": "1",
-      "email": "1",
-      "phone": "1",
+      "name": "4",
+      "email": "5",
+      "phone": "5",
       "id": 14
     }
   ],
@@ -103,6 +79,12 @@
       "login": "12",
       "password": "12",
       "id": 6
+    },
+    {
+      "name": "5",
+      "login": "5",
+      "password": "5",
+      "id": 7
     }
   ]
 }

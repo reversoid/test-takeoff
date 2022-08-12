@@ -17,32 +17,36 @@ const _contactsService = new ContactsService();
 
 export const addContact = createAsyncThunk(
   "contacts/add",
-  async (data: IContactDTO) => {
-    const response = await _contactsService.addContact(data);
+  async (data: IContactDTO, {getState}) => {
+    const token = (getState() as RootState).auth.token ?? '';
+    const response = await _contactsService.addContact(data, token);
     return response.data;
   }
 );
 
 export const removeContact = createAsyncThunk(
   "contacts/remove",
-  async (id: number) => {
-    await _contactsService.removeContact(id);
+  async (id: number, {getState}) => {
+    const token = (getState() as RootState).auth.token ?? '';
+    await _contactsService.removeContact(id, token);
     return id;
   }
 );
 
 export const updateContact = createAsyncThunk(
   "contacts/update",
-  async ({id, newData}: {id: number; newData: IContactDTO}) => {
-    const response = await _contactsService.updateContact({id, newData});
+  async ({id, newData}: {id: number; newData: IContactDTO}, {getState}) => {
+    const token = (getState() as RootState).auth.token ?? '';
+    const response = await _contactsService.updateContact({id, newData}, token);
     return response.data;
   }
 );
 
 export const getContacts = createAsyncThunk(
   "contacts/get",
-  async () => {
-    const response = await _contactsService.getContacts();
+  async (_, {getState}) => {
+    const token = (getState() as RootState).auth.token ?? '';
+    const response = await _contactsService.getContacts(token);
     return response.data;
   }
 );

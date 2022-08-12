@@ -13,10 +13,14 @@ import ContactDialog from "./components/ContactDialog/ContactDialog";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getContacts, selectContacts } from "./utils/contactsSlice";
 import { open } from "./components/ContactDialog/contactDialogSlice";
+import { selectAuth } from "../auth/utils/authSlice";
+import { Navigate } from "react-router-dom";
 
 export default function Dashboard() {
   const dispatch = useAppDispatch();
   const { value: contacts, status } = useAppSelector(selectContacts);
+
+  const { token } = useAppSelector(selectAuth);
 
   useEffect(() => {
     dispatch(getContacts());
@@ -26,6 +30,7 @@ export default function Dashboard() {
 
   return (
     <>
+      {token ? '' : <Navigate to={"/auth/login"} />}
       <LinearProgress
         color="info"
         sx={{
