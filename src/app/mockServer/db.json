@@ -1,60 +1,36 @@
 {
   "contacts": [
     {
-      "name": "",
-      "email": "",
-      "phone": "",
+      "name": "Alexey",
+      "email": "123@mail.ru",
+      "phone": "123555666",
       "id": 1
+    },
+    {
+      "name": "Arseniy",
+      "email": "1245@mail.com",
+      "phone": "111",
+      "id": 2
+    },
+    {
+      "name": "Maria",
+      "email": "555@mail.ru",
+      "phone": "123444",
+      "id": 3
     }
   ],
   "users": [
     {
       "id": 0,
-      "name": "George",
-      "login": "abc555_xxx",
-      "password": "123"
+      "name": "test1",
+      "login": "test1",
+      "password": "test1"
     },
     {
       "id": 1,
-      "name": "Michael",
-      "login": "abc666_xxx",
-      "password": "321"
-    },
-    {
-      "name": "beb",
-      "login": "abc555_xxxx",
-      "password": "123",
-      "id": 2
-    },
-    {
-      "name": "beb",
-      "login": "abc555_xxxxz",
-      "password": "123",
-      "id": 3
-    },
-    {
-      "name": "1",
-      "login": "1",
-      "password": "1",
-      "id": 4
-    },
-    {
-      "name": "4",
-      "login": "4",
-      "password": "4",
-      "id": 5
-    },
-    {
-      "name": "1",
-      "login": "12",
-      "password": "12",
-      "id": 6
-    },
-    {
-      "name": "5",
-      "login": "5",
-      "password": "5",
-      "id": 7
+      "name": "test2",
+      "login": "test2",
+      "password": "test2"
     }
   ]
 }
