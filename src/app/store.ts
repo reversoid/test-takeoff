@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import contactsReducer from '../features/dashboard/utils/contactsSlice';
-import dialogReducer from '../components/ContactDialog/contactDialogSlice';
+import dialogReducer from '../features/dashboard/components/ContactDialog/contactDialogSlice';
 
 export const store = configureStore({
   reducer: {

@@ -5,10 +5,10 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import { useAppDispatch } from "../../../app/hooks";
-import { open } from "../../../components/ContactDialog/contactDialogSlice";
-import { removeContact } from "../utils/contactsSlice";
-import { IContact } from "../utils/types";
+import { useAppDispatch } from "../../../../app/hooks";
+import { open } from "../ContactDialog/contactDialogSlice";
+import { removeContact } from "../../utils/contactsSlice";
+import { IContact } from "../../utils/types";
 
 export default function Contact({contact}: {contact: IContact}) {
 
