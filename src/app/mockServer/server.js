@@ -1,10 +1,12 @@
 const axios = require("axios");
 const jsonServer = require("json-server");
-const server = jsonServer.create();
 const path = require("path");
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
 const jwt = require("jsonwebtoken");
+const express = require('express');
+const app = express();
+
 
 const PRIVATE_KEY = "5a12321312B3S0s4a8v4x479590zzz5ze59t38yXXX";
 
@@ -12,10 +14,10 @@ function createJWT(payload) {
   return jwt.sign(payload, PRIVATE_KEY, { expiresIn: "7d" });
 }
 
-server.use(middlewares);
-server.use(jsonServer.bodyParser);
+app.use(middlewares);
+app.use(jsonServer.bodyParser);
 
-server.post("/api/auth/login", async (req, res) => {
+app.post("/api/auth/login", async (req, res) => {
   try {
     const { login, password } = req.body;
     if (!(login && password))
@@ -38,7 +40,7 @@ server.post("/api/auth/login", async (req, res) => {
   }
 });
 
-server.post("/api/auth/registration", async (req, res) => {
+app.post("/api/auth/registration", async (req, res) => {
   try {
     const { name, login, password } = req.body;
     if (!(login && password && name))
@@ -64,8 +66,20 @@ server.post("/api/auth/registration", async (req, res) => {
   }
 });
 
-server.use("/api", router);
+app.use('/api/contacts', async (req, res, next) => {
+  const {token} = req.headers;
+  try {
+    await jwt.verify(token, PRIVATE_KEY);
+    next();
+  } catch (error) {
+    res.status(401).json({message: "You are not authorized"});
+  }
+  console.log(token);
+})
 
-server.listen(4444, () => {
+
+app.use("/api", router);
+
+app.listen(4444, () => {
   console.log("JSON Server is running");
 });
