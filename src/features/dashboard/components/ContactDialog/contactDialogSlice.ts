@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
-import { IContact } from "../../features/dashboard/utils/types";
+import { RootState } from "../../../../app/store";
+import { IContact } from "../../utils/types";
 
 export interface DialogState {
   isOpen: boolean;

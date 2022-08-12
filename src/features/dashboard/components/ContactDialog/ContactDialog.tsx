@@ -6,19 +6,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button } from "@mui/material";
-import { IContactDTO } from "../../features/dashboard/utils/types";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { IContactDTO } from "../../utils/types";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { close, selectDialogState } from "./contactDialogSlice";
 import {
   addContact,
   updateContact,
-} from "../../features/dashboard/utils/contactsSlice";
+} from "../../utils/contactsSlice";
+import { defaultFormValue } from "./constants";
 
-const defaultFormValue: IContactDTO = {
-  name: '',
-  email: '',
-  phone: '',
-}
 
 export default function ContactDialog() {
   const dispatch = useAppDispatch();
