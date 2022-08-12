@@ -1,12 +1,6 @@
 {
   "contacts": [
     {
-      "name": "3",
-      "email": "555",
-      "phone": "2",
-      "id": 3
-    },
-    {
       "name": "2",
       "email": "2",
       "phone": "2",
@@ -59,6 +53,12 @@
       "email": "5",
       "phone": "5",
       "id": 13
+    },
+    {
+      "name": "1",
+      "email": "1",
+      "phone": "1",
+      "id": 14
     }
   ],
   "users": [
