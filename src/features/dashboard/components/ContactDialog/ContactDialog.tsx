@@ -39,8 +39,8 @@ export default function ContactDialog() {
         .unwrap()
         .catch(handleAuthError(dispatch, removeToken));
     }
-    setForm(defaultFormValue);
     dispatch(close());
+    setForm(defaultFormValue);
   };
 
   useEffect(() => {
