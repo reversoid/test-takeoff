@@ -63,14 +63,28 @@
   ],
   "users": [
     {
+      "id": 0,
       "name": "George",
       "login": "abc555_xxx",
       "password": "123"
     },
     {
+      "id": 1,
       "name": "Michael",
       "login": "abc666_xxx",
       "password": "321"
+    },
+    {
+      "name": "beb",
+      "login": "abc555_xxxx",
+      "password": "123",
+      "id": 2
+    },
+    {
+      "name": "beb",
+      "login": "abc555_xxxxz",
+      "password": "123",
+      "id": 3
     }
   ]
 }
