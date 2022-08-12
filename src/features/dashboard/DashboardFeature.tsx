@@ -7,12 +7,12 @@ import {
 } from "@mui/material";
 import { nanoid } from "nanoid";
 import React, { useEffect } from "react";
-import Contact from "./components/Contact";
+import Contact from "./components/Contact/Contact";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import ContactDialog from "../../components/ContactDialog/ContactDialog";
+import ContactDialog from "./components/ContactDialog/ContactDialog";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getContacts, selectContacts } from "./utils/contactsSlice";
-import { open } from "../../components/ContactDialog/contactDialogSlice";
+import { open } from "./components/ContactDialog/contactDialogSlice";
 
 export default function Dashboard() {
   const dispatch = useAppDispatch();
