@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   LinearProgress,
@@ -50,8 +51,9 @@ export default function RegistrationPage() {
           variant="h1"
           component="h1"
           fontSize={"2.5rem"}
-          fontWeight={"500"}
+          fontWeight={"600"}
           textAlign={"center"}
+          sx={{ mt: "0.5rem", mb: "1rem" }}
         >
           Registration
         </Typography>
@@ -64,6 +66,7 @@ export default function RegistrationPage() {
             variant="filled"
           />
           <TextField
+            margin="dense"
             value={form.login}
             onChange={(e) => setForm({ ...form, login: e.target.value })}
             fullWidth
@@ -71,6 +74,7 @@ export default function RegistrationPage() {
             variant="filled"
           />
           <TextField
+            margin="dense"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             fullWidth
@@ -79,6 +83,7 @@ export default function RegistrationPage() {
             type="password"
           />
           <Button
+            sx={{ mt: "0.5rem" }}
             disabled={!isFormValid}
             variant="contained"
             onClick={() => handleRegistration(form)}
@@ -86,10 +91,12 @@ export default function RegistrationPage() {
             Registration
           </Button>
         </form>
-        <FormLabel>
-          Already have an account?
-          <Link to={"/auth/login"}>Sign in</Link>
-        </FormLabel>
+        <Box sx={{ mt: "1rem" }}>
+          <FormLabel>
+            Already have an account?{" "}
+            <Link to={"/auth/login"}>Sign in</Link>
+          </FormLabel>
+        </Box>
       </Container>
     </>
   );

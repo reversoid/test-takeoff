@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   FormLabel,
@@ -48,21 +49,25 @@ export default function LoginPage() {
           variant="h1"
           component="h1"
           fontSize={"2.5rem"}
-          fontWeight={"500"}
+          fontWeight={"600"}
           textAlign={"center"}
+          sx={{mt: '0.5rem', mb: '1rem'}}
         >
           Login
         </Typography>
         <form>
           <TextField value={form.login} onChange={(e) => setForm({...form, login: e.target.value})} fullWidth label="Login" variant="filled" />
-          <TextField value={form.password} onChange={(e) => setForm({...form, password: e.target.value})} type="password" fullWidth label="Password" variant="filled" />
+          <TextField margin="dense" value={form.password} onChange={(e) => setForm({...form, password: e.target.value})} type="password" fullWidth label="Password" variant="filled" />
 
-          <Button onClick={() => handleLogin(form)} disabled={!isFormValid} variant="contained">Login</Button>
+          <Button sx={{mt: '0.5rem'}} onClick={() => handleLogin(form)} disabled={!isFormValid} variant="contained">Login</Button>
         </form>
+        <Box sx={{pt: '1rem'}}>
         <FormLabel>
           Do not have an account yet?{" "}
           <Link to={"/auth/registration"}>Sign up</Link>
         </FormLabel>
+        </Box>
+        
       </Container>
     </>
   );
