@@ -5,17 +5,15 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import { useAppDispatch } from "../../../app/hooks";
+import { open } from "../../../components/ContactDialog/contactDialogSlice";
+import { removeContact } from "../utils/contactsSlice";
 import { IContact } from "../utils/types";
 
-export default function Contact({
-  contact,
-  handleEdit,
-  handleRemove,
-}: {
-  contact: IContact;
-  handleEdit: (contact: IContact) => void;
-  handleRemove: (id: number) => void;
-}) {
+export default function Contact({contact}: {contact: IContact}) {
+
+  const dispatch = useAppDispatch();
+
   return (
     <Card sx={{ minWidth: 275 }} variant="outlined">
       <CardContent>
@@ -32,10 +30,10 @@ export default function Contact({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="medium" color="primary" onClick={() => handleEdit(contact)}>
+        <Button size="medium" color="primary" onClick={() => dispatch(open(contact))}>
           Edit
         </Button>
-        <Button size="medium" color="error" onClick={() => handleRemove(contact.id)}>
+        <Button size="medium" color="error" onClick={() => dispatch(removeContact(contact.id))}>
           Remove
         </Button>
       </CardActions>

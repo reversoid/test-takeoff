@@ -1,54 +1,41 @@
 import {
   Box,
   Button,
-  CircularProgress,
   Container,
-  Hidden,
   LinearProgress,
   Typography,
 } from "@mui/material";
 import { nanoid } from "nanoid";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Contact from "./components/Contact";
-import { IContact, IContactDTO } from "./utils/types";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import ContactDialog from "./components/ContactDialog";
+import ContactDialog from "../../components/ContactDialog/ContactDialog";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { addContact, getContacts, removeContact, selectContacts } from "./utils/contactsSlice";
+import { getContacts, selectContacts } from "./utils/contactsSlice";
+import { open } from "../../components/ContactDialog/contactDialogSlice";
 
 export default function Dashboard() {
   const dispatch = useAppDispatch();
-  const {value: contacts, status} = useAppSelector(selectContacts);
-  
+  const { value: contacts, status } = useAppSelector(selectContacts);
+
   useEffect(() => {
-    dispatch(getContacts())
-  }, []);
+    dispatch(getContacts());
+  }, [dispatch]);
 
-  const [open, setOpen] = useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSubmit = (data: IContactDTO) => {
-    dispatch(addContact(data));
-    setOpen(false);
-  };
-
-
-  const handleEditContact = (contact: IContact) => {
-    console.log("hello", contact);
-  };
-
-  const handleRemoveContact = (id: number) => {
-    dispatch(removeContact(id));
-  };
-  
-  const isLoading = status === 'loading';
+  const isLoading = status === "loading";
 
   return (
     <>
-      <LinearProgress color="info" sx={{visibility: isLoading ? 'visible' : 'hidden', position: 'fixed', top: '0', left: '0', width: '100%'}}/>
+      <LinearProgress
+        color="info"
+        sx={{
+          visibility: isLoading ? "visible" : "hidden",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          width: "100%",
+        }}
+      />
       <Container maxWidth="lg">
         <Typography
           variant="h1"
@@ -59,24 +46,15 @@ export default function Dashboard() {
         >
           Contacts
         </Typography>
-        <Button onClick={() => setOpen(true)} variant="contained">
+        <Button onClick={() => dispatch(open(undefined))} variant="contained">
           <AddBoxIcon fontSize="large" />
         </Button>
         <Box>
           {contacts.map((contact) => (
-            <Contact
-              handleEdit={handleEditContact}
-              handleRemove={handleRemoveContact}
-              contact={contact}
-              key={nanoid()}
-            />
+            <Contact contact={contact} key={nanoid()} />
           ))}
         </Box>
-        <ContactDialog
-          open={open}
-          handleSubmit={handleSubmit}
-          handleClose={handleClose}
-        />
+        <ContactDialog />
       </Container>
     </>
   );

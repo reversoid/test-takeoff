@@ -6,34 +6,47 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button } from "@mui/material";
-import { IContactDTO } from "../utils/types";
+import { IContactDTO } from "../../features/dashboard/utils/types";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { close, selectDialogState } from "./contactDialogSlice";
+import {
+  addContact,
+  updateContact,
+} from "../../features/dashboard/utils/contactsSlice";
 
-export default function ContactDialog({
-  open,
-  handleSubmit,
-  handleClose,
-  prevData,
-}: {
-  open: boolean;
-  handleSubmit: (form: IContactDTO) => void;
-  handleClose: () => void;
-  prevData?: IContactDTO;
-}) {
-  const [form, setForm] = useState<IContactDTO>(
-    prevData ?? {
-      name: "",
-      email: "",
-      phone: "",
-    }
-  );
+const defaultFormValue: IContactDTO = {
+  name: '',
+  email: '',
+  phone: '',
+}
+
+export default function ContactDialog() {
+  const dispatch = useAppDispatch();
+
+  const { isOpen, contact } = useAppSelector(selectDialogState);
+
+  const [form, setForm] = useState<IContactDTO>(defaultFormValue);
 
   const [dialogContent, setDialogContent] = useState({
     title: "",
     description: "",
   });
 
+  const handleSubmit = () => {
+    if (contact) {
+      let id: number = contact.id;
+      let newData: IContactDTO = form;
+      dispatch(updateContact({ id, newData }));
+    } else {
+      dispatch(addContact(form));
+    }
+    setForm(defaultFormValue);
+    dispatch(close());
+  };
+
   useEffect(() => {
-    if (prevData) {
+    if (contact) {
+      setForm(contact);
       setDialogContent({
         title: "Edit contact",
         description: "Here you can edit an existing contact",
@@ -44,10 +57,10 @@ export default function ContactDialog({
         description: "Here you can add new contact to the list",
       });
     }
-  }, [prevData]);
+  }, [contact]);
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={isOpen} onClose={() => dispatch(close())}>
       <DialogTitle>{dialogContent.title}</DialogTitle>
       <DialogContent>
         <DialogContentText>{dialogContent.description}</DialogContentText>
@@ -83,8 +96,8 @@ export default function ContactDialog({
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={() => handleSubmit(form)}>Submit</Button>
+        <Button onClick={() => dispatch(close())}>Cancel</Button>
+        <Button onClick={handleSubmit}>Submit</Button>
       </DialogActions>
     </Dialog>
   );
