@@ -34,7 +34,12 @@ export const registration = createAsyncThunk(
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    removeToken: (state) => {
+      state.token = null;
+      localStorage.removeItem('token');
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state) => {
       state.status = "loading";
@@ -61,6 +66,8 @@ export const authSlice = createSlice({
     });
   },
 });
+
+export const { removeToken } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 

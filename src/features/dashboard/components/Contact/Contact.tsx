@@ -9,10 +9,17 @@ import { useAppDispatch } from "../../../../app/hooks";
 import { open } from "../ContactDialog/contactDialogSlice";
 import { removeContact } from "../../utils/contactsSlice";
 import { IContact } from "../../utils/types";
+import { removeToken } from "../../../auth/utils/authSlice";
+import { handleAuthError } from "../../utils/handleAuthError";
 
 export default function Contact({contact}: {contact: IContact}) {
 
   const dispatch = useAppDispatch();
+
+  const handleRemove = () => {
+    dispatch(removeContact(contact.id)).unwrap()
+    .catch(handleAuthError(dispatch, removeToken));
+  }
 
   return (
     <Card sx={{ minWidth: 275 }} variant="outlined">
@@ -33,7 +40,7 @@ export default function Contact({contact}: {contact: IContact}) {
         <Button size="medium" color="primary" onClick={() => dispatch(open(contact))}>
           Edit
         </Button>
-        <Button size="medium" color="error" onClick={() => dispatch(removeContact(contact.id))}>
+        <Button size="medium" color="error" onClick={handleRemove}>
           Remove
         </Button>
       </CardActions>

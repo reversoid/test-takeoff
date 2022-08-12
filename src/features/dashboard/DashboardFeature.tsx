@@ -13,8 +13,9 @@ import ContactDialog from "./components/ContactDialog/ContactDialog";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getContacts, selectContacts } from "./utils/contactsSlice";
 import { open } from "./components/ContactDialog/contactDialogSlice";
-import { selectAuth } from "../auth/utils/authSlice";
+import { removeToken, selectAuth } from "../auth/utils/authSlice";
 import { Navigate } from "react-router-dom";
+import { handleAuthError } from "./utils/handleAuthError";
 
 export default function Dashboard() {
   const dispatch = useAppDispatch();
@@ -23,14 +24,16 @@ export default function Dashboard() {
   const { token } = useAppSelector(selectAuth);
 
   useEffect(() => {
-    dispatch(getContacts());
-  }, [dispatch]);
+    dispatch(getContacts())
+      .unwrap()
+      .catch(handleAuthError(dispatch, removeToken));
+  }, []);
 
   const isLoading = status === "loading";
 
   return (
     <>
-      {token ? '' : <Navigate to={"/auth/login"} />}
+      {token ? "" : <Navigate to={"/auth/login"} />}
       <LinearProgress
         color="info"
         sx={{

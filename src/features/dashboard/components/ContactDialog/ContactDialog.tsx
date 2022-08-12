@@ -9,11 +9,10 @@ import { Button } from "@mui/material";
 import { IContactDTO } from "../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { close, selectDialogState } from "./contactDialogSlice";
-import {
-  addContact,
-  updateContact,
-} from "../../utils/contactsSlice";
+import { addContact, updateContact } from "../../utils/contactsSlice";
 import { defaultFormValue } from "./constants";
+import { removeToken } from "../../../auth/utils/authSlice";
+import { handleAuthError } from "../../utils/handleAuthError";
 
 
 export default function ContactDialog() {
@@ -32,9 +31,13 @@ export default function ContactDialog() {
     if (contact) {
       let id: number = contact.id;
       let newData: IContactDTO = form;
-      dispatch(updateContact({ id, newData }));
+      dispatch(updateContact({ id, newData }))
+        .unwrap()
+        .catch(handleAuthError(dispatch, removeToken));
     } else {
-      dispatch(addContact(form));
+      dispatch(addContact(form))
+        .unwrap()
+        .catch(handleAuthError(dispatch, removeToken));
     }
     setForm(defaultFormValue);
     dispatch(close());
