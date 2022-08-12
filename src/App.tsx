@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter, Routes } from "react-router-dom";
 import { routes } from "./app/routes";
-import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import Snackbar from "@mui/material/Snackbar";
 import { useAppSelector } from "./app/hooks";
 import { selectContacts } from "./features/dashboard/utils/contactsSlice";
 import { selectAuth } from "./features/auth/utils/authSlice";

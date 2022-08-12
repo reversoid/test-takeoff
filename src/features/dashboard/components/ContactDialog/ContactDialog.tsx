@@ -65,7 +65,6 @@ export default function ContactDialog() {
         <DialogContentText>{dialogContent.description}</DialogContentText>
         <TextField
           margin="dense"
-          id="name"
           label="Name"
           type="text"
           fullWidth
@@ -75,9 +74,8 @@ export default function ContactDialog() {
         />
         <TextField
           margin="dense"
-          id="name"
           label="Email"
-          type="email"
+          type="text"
           fullWidth
           variant="standard"
           value={form.email}
@@ -85,9 +83,8 @@ export default function ContactDialog() {
         />
         <TextField
           margin="dense"
-          id="name"
           label="Phone"
-          type="email"
+          type="text"
           fullWidth
           variant="standard"
           value={form.phone}
