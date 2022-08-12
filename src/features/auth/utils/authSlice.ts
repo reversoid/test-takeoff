@@ -34,14 +34,7 @@ export const registration = createAsyncThunk(
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    removeToken: (state) => {
-      state.token = null;
-    },
-    setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state) => {
       state.status = "loading";
@@ -49,6 +42,7 @@ export const authSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action: PayloadAction<string>) => {
       state.status = "idle";
       state.token = action.payload;
+      localStorage.setItem('token', state.token);
     });
     builder.addCase(login.rejected, (state) => {
       state.status = "failed";
@@ -60,14 +54,13 @@ export const authSlice = createSlice({
     builder.addCase(registration.fulfilled, (state, action: PayloadAction<string>) => {
       state.status = "idle";
       state.token = action.payload;
+      localStorage.setItem('token', state.token);
     });
     builder.addCase(registration.rejected, (state) => {
       state.status = "failed";
     });
   },
 });
-
-export const { removeToken, setToken } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 

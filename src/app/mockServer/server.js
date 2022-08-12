@@ -74,7 +74,6 @@ app.use('/api/contacts', async (req, res, next) => {
   } catch (error) {
     res.status(401).json({message: "You are not authorized"});
   }
-  console.log(token);
 })
 
 

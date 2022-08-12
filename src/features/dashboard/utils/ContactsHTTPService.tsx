@@ -3,7 +3,7 @@ import { IContact, IContactDTO } from "./types";
 
 export class ContactsService {
   public getContacts() {
-    return axios.get<IContact[]>("http://localhost:4444/api/contacts");
+    return axios.get<IContact[]>("http://localhost:4444/api/contacts", {headers: {token: localStorage.getItem('token') ?? ''}});
   }
 
   public updateContact(data: { id: number; newData: IContactDTO }) {
