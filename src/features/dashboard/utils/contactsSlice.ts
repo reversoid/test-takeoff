@@ -68,10 +68,10 @@ export const updateContact = createAsyncThunk(
 
 export const getContacts = createAsyncThunk(
   "contacts/get",
-  async (_, { getState }) => {
+  async (pattern: string, { getState }) => {
     try {
       const token = (getState() as RootState).auth.token ?? "";
-      const response = await _contactsService.getContacts(token);
+      const response = await _contactsService.getContacts(token, pattern);
       return response.data;
     } catch (error) {
       let response = (error as AxiosError).response;

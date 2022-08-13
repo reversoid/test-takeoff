@@ -2,8 +2,8 @@ import axios from "axios";
 import { IContact, IContactDTO } from "./types";
 
 export class ContactsService {
-  public getContacts(token: string) {
-    return axios.get<IContact[]>("http://localhost:4444/api/contacts", {
+  public getContacts(token: string, pattern: string) {
+    return axios.get<IContact[]>(`http://localhost:4444/api/contacts?q=${pattern}`, {
       headers: { token },
     });
   }

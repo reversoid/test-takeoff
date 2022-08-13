@@ -3,10 +3,11 @@ import {
   Button,
   Container,
   LinearProgress,
+  TextField,
   Typography,
 } from "@mui/material";
 import { nanoid } from "nanoid";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Contact from "./components/Contact/Contact";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ContactDialog from "./components/ContactDialog/ContactDialog";
@@ -21,10 +22,16 @@ export default function Dashboard() {
   const dispatch = useAppDispatch();
   const { value: contacts, status } = useAppSelector(selectContacts);
 
+  const [search, setSearch] = useState("");
+
   const { token } = useAppSelector(selectAuth);
 
   useEffect(() => {
-    dispatch(getContacts())
+    loadContacts();
+  }, []);
+
+  const loadContacts = useCallback((pattern?: string) => {
+    dispatch(getContacts(pattern ?? ''))
       .unwrap()
       .catch(handleAuthError(dispatch, removeToken));
   }, []);
@@ -51,14 +58,31 @@ export default function Dashboard() {
           fontSize={"2.5rem"}
           fontWeight={"600"}
           textAlign={"center"}
-          sx={{my: '1rem'}}
+          sx={{ my: "1rem" }}
         >
           Contacts
         </Typography>
-        <Button sx={{mb: '0.5rem'}} onClick={() => dispatch(open(undefined))} variant="contained">
+        <Button
+          sx={{ mb: "0.5rem" }}
+          onClick={() => dispatch(open(undefined))}
+          variant="contained"
+        >
           <AddBoxIcon fontSize="large" />
         </Button>
-        <Box sx={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+        
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <Box sx={{display: "flex", justifyContent: 'space-between', alignItems: 'center', gap: '1rem'}}>
+            <TextField
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              sx={{ mt: "0.5rem", flexGrow: '1' }}
+              id="outlined-basic"
+              label="Search"
+              variant="outlined"
+            />
+            <Button sx={{height: '80%'}} onClick={() => loadContacts(search)} variant="contained">Search</Button>
+          </Box>
+
           {contacts.map((contact) => (
             <Contact contact={contact} key={nanoid()} />
           ))}
